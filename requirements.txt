@@ -1,0 +1,7 @@
+ultralytics==8.3.218
+opencv-python
+pillow
+# Usar yt-dlp porque maneja mejor los enlaces de YouTube y shorts
+yt-dlp
+# Si usas RTSP y tienes problemas con codecs:
+# opencv-contrib-python
