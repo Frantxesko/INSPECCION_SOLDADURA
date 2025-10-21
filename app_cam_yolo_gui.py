@@ -50,11 +50,10 @@ class YoloCamApp:
         header_frame = ttk.Frame(main_container, style="Corporate.TFrame")
         header_frame.pack(fill="x", pady=(0, 10))
         
-        # Frame para el logo
+        # Frame para el logo (arriba a la derecha)
         self.logo_frame = ttk.Frame(header_frame, style="Corporate.TFrame", width=260, height=100)
-        self.logo_frame.pack(side="left", padx=(15,25), pady=10)
+        self.logo_frame.pack(side="right", padx=(15,25), pady=10)
         self.logo_frame.pack_propagate(False)  # Mantener tamaño fijo
-        
         # Label para el logo
         self.logo_label = ttk.Label(self.logo_frame, style="Corporate.TLabel", background=self.COLORS["secondary"])
         self.logo_label.pack(fill="both", expand=True, padx=5)
