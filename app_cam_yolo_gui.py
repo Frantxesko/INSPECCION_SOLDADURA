@@ -465,32 +465,34 @@ class YoloCamApp:
             
     def load_company_logo(self):
         """Cargar y mostrar el logo de la empresa"""
+        logo_path = os.path.abspath("logo.png")
+        if not os.path.exists(logo_path):
+            if hasattr(self, 'logo_label'):
+                self.logo_label.configure(text="Logo no encontrado", image="")
+            print(f"Logo no encontrado en: {logo_path}")
+            return
         try:
             # Cargar y redimensionar el logo
-            logo_img = Image.open("logo.png")
-            
+            logo_img = Image.open(logo_path)
             # Calcular nuevo tamaño manteniendo proporción
             logo_width = 240  # Ancho máximo deseado
             aspect_ratio = logo_img.width / logo_img.height
             logo_height = int(logo_width / aspect_ratio)
-            
             # Asegurarse de que la altura no exceda el máximo
             max_height = 90
             if logo_height > max_height:
                 logo_height = max_height
                 logo_width = int(max_height * aspect_ratio)
-            
             logo_img = logo_img.resize((logo_width, logo_height), Image.Resampling.LANCZOS)
             logo_photo = ImageTk.PhotoImage(logo_img)
-            
             # Mostrar el logo
-            self.logo_label.configure(image=logo_photo)
+            self.logo_label.configure(image=logo_photo, text="")
             self.logo_label.image = logo_photo  # Mantener referencia
-            
             # Ajustar el tamaño del frame del logo
             self.logo_frame.configure(width=logo_width + 20, height=logo_height + 10)
-            
         except Exception as e:
+            if hasattr(self, 'logo_label'):
+                self.logo_label.configure(text="Error cargando logo", image="")
             print(f"Error al cargar el logo: {e}")
             
     def load_youtube_video(self):
